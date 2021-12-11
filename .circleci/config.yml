@@ -17,10 +17,35 @@ jobs:
       - run:
           name: "Say hello"
           command: "echo Hello, World!"
+  
+  Test-SauceDemo:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - checkout
+      - resolve-dependencies
+      - run-linter
+      - run-tests-rspec
+      - run:
+          name: Run unit tests using RSpec
+          command: >
+            mkdir -p /tmp/tests-rspec-results
+
+            TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | circleci tests
+            split --split-by=timings)"
+
+            bundle exec rspec \
+              --format progress \
+              --format RspecJunitFormatter \
+              --out /tmp/tests-rspec-results/rspec.xml \
+              $TEST_FILES
+      - store_test_results:
+          path: /tmp/tests-rspec-results
+          
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
   say-hello-workflow:
     jobs:
-      - say-hello
+      - Test-SauceDemo
