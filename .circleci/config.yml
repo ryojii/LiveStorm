@@ -23,9 +23,6 @@ jobs:
       - image: cimg/base:stable
     steps:
       - checkout
-      - resolve-dependencies
-      - run-linter
-      - run-tests-rspec
       - run:
           name: Run unit tests using RSpec
           command: >
