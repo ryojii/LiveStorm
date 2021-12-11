@@ -3,7 +3,8 @@
 version: 2.1
 
 orbs:
-  bundle-install: toshimaru/bundle-install@0.3.1
+  bundle-install: toshimaru/bundle-install@0.3.1 
+  browser-tools: circleci/browser-tools@1.2.3
 
 jobs:
   Test-SauceDemo:
@@ -12,6 +13,7 @@ jobs:
     steps:
       - checkout
       - bundle-install/bundle-install
+      - browser-tools/install-chromedriver
       - run:
           name: Run unit tests using RSpec
           command:
