@@ -13,7 +13,8 @@ jobs:
     steps:
       - checkout
       - bundle-install/bundle-install
-      - browser-tools/install-browser-tools
+      - browser-tools/install-chrome
+      - browser-tools/install-chromedriver
       - run:
           name: Run unit tests using RSpec
           command:
