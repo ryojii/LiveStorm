@@ -19,6 +19,7 @@ jobs:
           name: Run unit tests using RSpec
           command: >
             mkdir -p /tmp/tests-rspec-results
+            
             bundle exec rspec \
               --out /tmp/tests-rspec-results/rspec.xml 
       - store_test_results:
