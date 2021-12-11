@@ -17,8 +17,12 @@ jobs:
       - browser-tools/install-chromedriver
       - run:
           name: Run unit tests using RSpec
-          command:
-            bundle exec rspec
+          command: >
+            mkdir -p /tmp/tests-rspec-results
+            bundle exec rspec \
+              --out /tmp/tests-rspec-results/rspec.xml 
+      - store_test_results:
+          path: /tmp/tests-rspec-results
           
 
 # Invoke jobs via workflows
