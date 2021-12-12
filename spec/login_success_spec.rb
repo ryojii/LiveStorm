@@ -4,7 +4,7 @@ require 'spec_helper'
 
 describe 'Authentication "Happy path"' do
   before { 
-    @driver = Selenium::WebDriver.for :chrome
+    @driver = Selenium::WebDriver.for(:remote, :url => "https://jeromeaiguillon_WT6VE1:Xq2JZQvpx4U23zoKTUCw@hub-cloud.browserstack.com/wd/hub")
     @driver.navigate.to "https://www.saucedemo.com"
   }
 
