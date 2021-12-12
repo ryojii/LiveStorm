@@ -29,7 +29,7 @@ describe 'Authentication "Happy path"' do
 
     expect(@driver.current_url).to eq 'https://www.saucedemo.com/inventory.html'
     @driver.execute_script('browserstack_executor: {"action": "setSessionStatus", "arguments": {"status":"passed", "reason": "Successfully logged in !"}}')
-  rescue
-    @driver.execute_script('browserstack_executor: {"action": "setSessionStatus", "arguments": {"status":"failed", "reason": "Somethings go wrongs :("}}')
+#  rescue
+#    @driver.execute_script('browserstack_executor: {"action": "setSessionStatus", "arguments": {"status":"failed", "reason": "Somethings go wrongs :("}}')
   end
 end
