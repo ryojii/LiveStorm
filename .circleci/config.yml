@@ -18,7 +18,9 @@ jobs:
       - run:
           name: Run unit tests using RSpec
           command: >
-            bundle exec rspec spec/login_success_spec.rb \
+            mkdir -p /tmp/tests-rspec-results
+
+            bundle exec rspec spec/*_spec.rb \
               --format documentation \              
               --out /tmp/tests-rspec-results/rspec.xml \
               
