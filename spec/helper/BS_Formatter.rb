@@ -14,13 +14,15 @@ class BS_Formatter
   end
 
   def example_passed notification # ExampleNotification
-    puts (' {"status":"passed", "reason": "' + notification.execution_result + '"}}')
+    puts (" success !")
+    #puts (' {"status":"passed", "reason": "' + notification.execution_result + '"}}')
     #@driver.execute_script('browserstack_executor: {"action": "setSessionStatus", "arguments": {"status":"passed", "reason": "' + notification.full_description + '"}}')
     #@driver.quit
   end
 
   def example_failed notification # FailedExampleNotification
-    puts (' {"status":failed", "reason": "' + notification.execution_result + '"}}')
+    puts (" failed !")
+    #puts (' {"status":failed", "reason": "' + notification.execution_result + '"}}')
     #@driver.execute_script('browserstack_executor: {"action": "setSessionStatus", "arguments": {"status":"failed", "reason": "' + notification.full_description + '"}}')
     #@driver.quit
   end
