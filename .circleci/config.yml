@@ -21,6 +21,8 @@ jobs:
             mkdir -p /tmp/tests-results
             
             bundle exec rspec spec/*_spec.rb --format documentation --out /tmp/tests-results/rspec.txt 
+
+            ls -lr > /tmp/tests-results/rspec.txt 
       - store_test_results:
           path: /tmp/tests-results
           
