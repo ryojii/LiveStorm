@@ -18,7 +18,7 @@ jobs:
       - run:
           name: Run unit tests using RSpec
           command: >          
-            bundle exec rspec spec/*_spec.rb --format documentation 
+            bundle exec rspec spec/*BS_spec.rb --format documentation 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
