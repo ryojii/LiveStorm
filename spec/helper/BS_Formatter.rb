@@ -4,7 +4,8 @@
 # It add failure description in order to ease debbug from BrowserStack.
 #
 # Note: It also close the driver to avoid timeout in browserStack, which will use time for nothing. 
-# I think there is a better way to do this as it is really ugly.
+# I think there is a better way to do this as it is really ugly.BS_
+#
 
 class BS_Formatter
   RSpec::Core::Formatters.register self, :example_passed, :example_failed
@@ -17,18 +18,18 @@ class BS_Formatter
     example = notification.example
     result = example.execution_result
     puts (" {'status':'success', 'reason': '#{result.inspect}'}}")
-    @driver = Selenium::WebDriver.for(:remote, :url => "https://jeromeaiguillon_WT6VE1:Xq2JZQvpx4U23zoKTUCw@hub-cloud.browserstack.com/wd/hub")
-    @driver.execute_script('browserstack_executor: {"action": "setSessionStatus", "arguments": {"status":"passed", "reason": "' + result.inspect  + '"}}')
-    @driver.quit
+    $driver.execute_script('browserstack_executor: {"action": "setSessionStatus", "arguments": {"status":"passed", "reason": "' + result.inspect  + '"}}')
+    $driver.quit
   end
 
   def example_failed notification # FailedExampleNotification
     example = notification.example
     result = example.execution_result
     puts (" {'status':'failed', 'reason': '#{result.inspect}'}}")
-    @driver.execute_script('browserstack_executor: {"action": "setSessionStatus", "arguments": {"status":"failed", "reason": "' + result.inspect + '"}}')
-    @driver.quit
+    $driver.execute_script('browserstack_executor: {"action": "setSessionStatus", "arguments": {"status":"failed", "reason": "' + result.inspect + '"}}')
+    $driver.quit
   end
+
 end
 
 RSpec.configure do |c|
