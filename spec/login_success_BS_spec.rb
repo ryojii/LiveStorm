@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-#require 'rubygems'
 require 'spec_helper'
 
 describe 'Authentication "Happy path"' do
@@ -11,7 +10,6 @@ describe 'Authentication "Happy path"' do
   }
 
   it 'successful' do
-    begin
       puts "title of webpage is: #{@driver.title}"
       username_locator = {css: '#user-name'}
       password_locator = {css: '#password'}
@@ -28,12 +26,6 @@ describe 'Authentication "Happy path"' do
       password_element.send_keys 'secret_sauce'
       submit_element.click
       
-      # Replace Html with Dhtml in order to broke Test.
-      expect(@driver.current_url).to eq 'https://www.saucedemo.com/inventory.Dhtml'
-      @driver.execute_script('browserstack_executor: {"action": "setSessionStatus", "arguments": {"status":"passed", "reason": "Successfully logged in !"}}')
-    rescue
-      @driver.execute_script('browserstack_executor: {"action": "setSessionStatus", "arguments": {"status":"failed", "reason": "Somethings go wrongs :("}}')
-    end
-      @driver.quit
+      expect(@driver.current_url).to eq 'https://www.saucedemo.com/inventory.html'
   end
 end
