@@ -15,9 +15,12 @@ class BS_Formatter
 
   def example_passed notification # ExampleNotification
     puts (" success !")
-    puts (' {"status":"passed", "reason": "' + notification + '"}}')
-    puts (' {"status":"passed", "reason": "' + notification.metadata[:description] + '"}}')
-    puts (' {"status":"passed", "reason": "' + notification.execution_resulti.inspect + '"}}')
+    example = notification.example
+    @out.puts "finishing up test: #{example.metadata[:description]}"
+    result = example.execution_result
+    @out.puts "   result #{result.inspect}"
+    stat = result.status
+    @out.puts "   result status #{stat}"
     #@driver.execute_script('browserstack_executor: {"action": "setSessionStatus", "arguments": {"status":"passed", "reason": "' + notification.full_description + '"}}')
     #@driver.quit
   end
