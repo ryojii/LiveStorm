@@ -22,8 +22,7 @@ jobs:
 
             bundle exec rspec spec/*_spec.rb \
               --format documentation \              
-              --out /tmp/tests-rspec-results/rspec.xml \
-              
+              --out /tmp/tests-rspec-results/rspec.txt
       - store_test_results:
           path: /tmp/tests-rspec-results
 
