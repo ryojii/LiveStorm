@@ -27,6 +27,12 @@ class BS_Formatter
 
   def example_failed notification # FailedExampleNotification
     puts (" failed !")
+    example = notification.example
+    @out.puts "finishing up test: #{example.metadata[:description]}"
+    result = example.execution_result
+    @out.puts "   result #{result.inspect}"
+    stat = result.status
+    @out.puts "   result status #{stat}"
     #puts (' {"status":failed", "reason": "' + notification.execution_result + '"}}')
     #@driver.execute_script('browserstack_executor: {"action": "setSessionStatus", "arguments": {"status":"failed", "reason": "' + notification.full_description + '"}}')
     #@driver.quit

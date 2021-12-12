@@ -26,6 +26,6 @@ describe 'Authentication "Happy path"' do
       password_element.send_keys 'secret_sauce'
       submit_element.click
       
-      expect(@driver.current_url).to eq 'https://www.saucedemo.com/inventory.html'
+      expect(@driver.current_url).not_to eq 'https://www.saucedemo.com/inventory.html'
   end
 end
