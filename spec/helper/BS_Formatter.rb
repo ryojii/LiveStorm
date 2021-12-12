@@ -14,28 +14,19 @@ class BS_Formatter
   end
 
   def example_passed notification # ExampleNotification
-    puts (" success !")
     example = notification.example
-    @out.puts "finishing up test: #{example.metadata[:description]}"
     result = example.execution_result
-    @out.puts "   result #{result.inspect}"
-    stat = result.status
-    @out.puts "   result status #{stat}"
-    #@driver.execute_script('browserstack_executor: {"action": "setSessionStatus", "arguments": {"status":"passed", "reason": "' + notification.full_description + '"}}')
-    #@driver.quit
+    puts (" {'status':'success', 'reason': '#{result.inspect}'}}")
+    @driver.execute_script('browserstack_executor: {"action": "setSessionStatus", "arguments": {"status":"passed", "reason": "' + result.inspect  + '"}}')
+    @driver.quit
   end
 
   def example_failed notification # FailedExampleNotification
-    puts (" failed !")
     example = notification.example
-    @out.puts "finishing up test: #{example.metadata[:description]}"
     result = example.execution_result
-    @out.puts "   result #{result.inspect}"
-    stat = result.status
-    @out.puts "   result status #{stat}"
-    #puts (' {"status":failed", "reason": "' + notification.execution_result + '"}}')
-    #@driver.execute_script('browserstack_executor: {"action": "setSessionStatus", "arguments": {"status":"failed", "reason": "' + notification.full_description + '"}}')
-    #@driver.quit
+    puts (" {'status':'failed', 'reason': '#{result.inspect}'}}")
+    @driver.execute_script('browserstack_executor: {"action": "setSessionStatus", "arguments": {"status":"failed", "reason": "' + result.inspect + '"}}')
+    @driver.quit
   end
 end
 
