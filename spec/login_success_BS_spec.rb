@@ -10,7 +10,7 @@ describe 'Authentication "Happy path"' do
   }
 
   it 'successful' do
-      puts "title of webpage is: #{@driver.title}"
+      puts "title of webpage is: #{$driver.title}"
       username_locator = {css: '#user-name'}
       password_locator = {css: '#password'}
       submit_locator = {css: '.btn_action'}
