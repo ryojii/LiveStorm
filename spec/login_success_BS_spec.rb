@@ -27,8 +27,9 @@ describe 'Authentication "Happy path"' do
       username_element.send_keys 'standard_user'
       password_element.send_keys 'secret_sauce'
       submit_element.click
-
-      expect(@driver.current_url).to eq 'https://www.saucedemo.com/inventory.html'
+      
+      # Replace Html with Dhtml in order to broke Test.
+      expect(@driver.current_url).to eq 'https://www.saucedemo.com/inventory.Dhtml'
       @driver.execute_script('browserstack_executor: {"action": "setSessionStatus", "arguments": {"status":"passed", "reason": "Successfully logged in !"}}')
     rescue
       @driver.execute_script('browserstack_executor: {"action": "setSessionStatus", "arguments": {"status":"failed", "reason": "Somethings go wrongs :("}}')
