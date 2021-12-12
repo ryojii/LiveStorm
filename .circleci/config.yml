@@ -9,7 +9,7 @@ orbs:
 jobs:
   Test-SauceDemo:
     docker:
-      - image: 'circleci/ruby:2.6.3'
+      - image: circleci/ruby:2.4.2-node-browsers
     steps:
       - checkout
       - bundle-install/bundle-install
