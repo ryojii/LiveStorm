@@ -17,6 +17,7 @@ class BS_Formatter
     example = notification.example
     result = example.execution_result
     puts (" {'status':'success', 'reason': '#{result.inspect}'}}")
+    @driver = Selenium::WebDriver.for(:remote, :url => "https://jeromeaiguillon_WT6VE1:Xq2JZQvpx4U23zoKTUCw@hub-cloud.browserstack.com/wd/hub")
     @driver.execute_script('browserstack_executor: {"action": "setSessionStatus", "arguments": {"status":"passed", "reason": "' + result.inspect  + '"}}')
     @driver.quit
   end
