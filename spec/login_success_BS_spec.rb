@@ -5,8 +5,8 @@ require 'spec_helper'
 
 describe 'Authentication "Happy path"' do
   before { 
-    #@driver = Selenium::WebDriver.for(:remote, :url => "https://jeromeaiguillon_WT6VE1:Xq2JZQvpx4U23zoKTUCw@hub-cloud.browserstack.com/wd/hub")
-    @driver = Selenium::WebDriver.for :chrome
+    @driver = Selenium::WebDriver.for(:remote, :url => "https://jeromeaiguillon_WT6VE1:Xq2JZQvpx4U23zoKTUCw@hub-cloud.browserstack.com/wd/hub")
+    #@driver = Selenium::WebDriver.for :chrome
     @driver.navigate.to "https://www.saucedemo.com"
   }
 
@@ -28,8 +28,8 @@ describe 'Authentication "Happy path"' do
     submit_element.click
 
     expect(@driver.current_url).to eq 'https://www.saucedemo.com/inventory.html'
-    #@driver.execute_script('browserstack_executor: {"action": "setSessionStatus", "arguments": {"status":"passed", "reason": "Successfully logged in !"}}')
-#  rescue
-#    @driver.execute_script('browserstack_executor: {"action": "setSessionStatus", "arguments": {"status":"failed", "reason": "Somethings go wrongs :("}}')
+    @driver.execute_script('browserstack_executor: {"action": "setSessionStatus", "arguments": {"status":"passed", "reason": "Successfully logged in !"}}')
+  rescue
+    @driver.execute_script('browserstack_executor: {"action": "setSessionStatus", "arguments": {"status":"failed", "reason": "Somethings go wrongs :("}}')
   end
 end
