@@ -18,14 +18,10 @@ jobs:
       - run:
           name: Run unit tests using RSpec
           command: >
-            mkdir -p /tmp/tests-rspec-results
-
-            TEST_FILES="$(circleci tests glob "spec/*_spec.rb")"
-
-            bundle exec rspec \
+            bundle exec rspec spec/login_success_spec.rb \
               --format documentation \              
               --out /tmp/tests-rspec-results/rspec.xml \
-              spec/login_success_spec.rb
+              
       - store_test_results:
           path: /tmp/tests-rspec-results
 
