@@ -7,7 +7,9 @@ require 'selenium-webdriver'
 require_relative './helper/BS_Formatter'
 
 ## set up driver as a global var, I suppose there is a better way to do this.
-$driver = Selenium::WebDriver.for(:remote, :url => "https://jeromeaiguillon_WT6VE1:Xq2JZQvpx4U23zoKTUCw@hub-cloud.browserstack.com/wd/hub")
+#if $driver == nil 
+#  $driver = Selenium::WebDriver.for(:remote, :url => "https://jeromeaiguillon_WT6VE1:Xq2JZQvpx4U23zoKTUCw@hub-cloud.browserstack.com/wd/hub")
+#end
 
 # configure
 Capybara.configure do |config|

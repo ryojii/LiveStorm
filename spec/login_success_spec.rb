@@ -4,14 +4,16 @@ require 'spec_helper'
 
 require_relative 'model/login.rb'
 require_relative 'model/inventory.rb'
+require_relative 'helper/driver.rb'
 
 describe '"Happy path" Authentication' do
   before { 
+    Driver.new
     $driver.navigate.to "https://www.saucedemo.com"
   }
 
   it 'successful' do
-      puts "Start at page: #{$driver.title}"
+      puts "Start page title is: #{$driver.title}"
 
       page = Login.new
       page.do_login('standard_user', 'secret_sauce')
