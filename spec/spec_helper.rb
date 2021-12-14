@@ -1,25 +1,13 @@
 # spec_helper.rb
+
 require 'capybara/rspec'
 require 'capybara/dsl'
+require 'selenium-webdriver'
+
 require_relative './helper/BS_Formatter'
 
-# set up driver
-Capybara.register_driver :headless_chrome do |app|
-  Capybara::Selenium::Driver.new(
-    app,
-    browser: :chrome,
-    http_client: client,
-    options: options)
-end
-
-## set up client
-require 'selenium-webdriver'
-client = Selenium::WebDriver.for :chrome # see also following link.
-
-## set up options
-options = Selenium::WebDriver::Chrome::Options.new.tap do |opts|
-  opts.args << '--headless'
-end
+## set up driver as a global var, I suppose there is a better way to do this.
+$driver = Selenium::WebDriver.for(:remote, :url => "https://jeromeaiguillon_WT6VE1:Xq2JZQvpx4U23zoKTUCw@hub-cloud.browserstack.com/wd/hub")
 
 # configure
 Capybara.configure do |config|

@@ -3,8 +3,8 @@
 # BS_Formatter is used to send result to BrowserStack.
 # It add failure description in order to ease debbug from BrowserStack.
 #
-# Note: It also close the driver to avoid timeout in browserStack, which will use time for nothing. 
-# I think there is a better way to do this as it is really ugly.BS_
+# Note: It also close the driver to avoid timeout in browserStack, which will waste remaining timev 
+# I think there is a better way to do this as it is really ugly.
 #
 
 class BS_Formatter
@@ -15,18 +15,14 @@ class BS_Formatter
   end
 
   def example_passed notification # ExampleNotification
-    example = notification.example
-    result = example.execution_result
-    puts (" {'status':'success', 'reason': '#{result.inspect}'}}")
-    $driver.execute_script('browserstack_executor: {"action": "setSessionStatus", "arguments": {"status":"passed", "reason": "' + result.inspect  + '"}}')
+    reason = notification.example.execution_result.status.to_s
+    $driver.execute_script('browserstack_executor: {"action": "setSessionStatus", "arguments": {"status":"passed", "reason": "' + reason  + '"}}')
     $driver.quit
   end
 
   def example_failed notification # FailedExampleNotification
-    example = notification.example
-    result = example.execution_result
-    puts (" {'status':'failed', 'reason': '#{result.inspect}'}}")
-    $driver.execute_script('browserstack_executor: {"action": "setSessionStatus", "arguments": {"status":"failed", "reason": "' + result.inspect + '"}}')
+    reason = notification.message_lines.join("\n")
+    $driver.execute_script('browserstack_executor: {"action": "setSessionStatus", "arguments": {"status":"failed", "reason": "' + reason + '"}}')
     $driver.quit
   end
 
