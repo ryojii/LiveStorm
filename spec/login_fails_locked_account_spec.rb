@@ -8,14 +8,6 @@ describe '"None shall pass!" Authentication'  do
     $driver.navigate.to "https://www.saucedemo.com"
   }
 
-  it 'fail for wrong credentials' do
-    puts "title of webpage is: #{$driver.title}"
-    page = Login.new
-
-    page.do_login( 'standard', 'secret')
-    @result = expect($driver.current_url).to eq 'https://www.saucedemo.com/'
-  end
-
   it 'fail for locked account' do
     puts "title of webpage is: #{$driver.title}"
     page = Login.new
